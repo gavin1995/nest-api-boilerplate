@@ -17,8 +17,8 @@ export const SensitiveWordFilteredBody = createParamDecorator(
     if (!data.length) return body;
     data.forEach(filter => {
       const word: string = _.at(body, filter.filterKey)[0];
-      const filterRes = mint.filterSync(word);
-      if (!filterRes.pass) throw new BadRequestException(filter.errorMessage || '请不要输入敏感词');
+      const verifyRes = mint.verify(word);
+      if (!verifyRes) throw new BadRequestException(filter.errorMessage || '请不要输入敏感词');
     });
 
     return body;

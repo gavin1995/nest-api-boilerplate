@@ -10,7 +10,7 @@ const request = (method, noMsg = false) => async (url, data = {}) => {
       'Content-Type': 'application/json'
     }
   };
-  const res = await (async () => {
+  const res: any = await (async () => {
     if (method === 'GET') {
       return !keys.length ? await nodeFetch(url, config) : await nodeFetch(`${url}?${ compact(keys.map(key => data[key] ? `${key}=${data[key]}` : '')).join('&') }`, config);
     } else {

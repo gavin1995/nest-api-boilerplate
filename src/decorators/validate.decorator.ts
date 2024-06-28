@@ -13,7 +13,6 @@ import {
   IsArray,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import ValidatorJS from 'validator';
 
 export const VString = (
   description: string,
@@ -43,7 +42,7 @@ export const VString = (
 export const VUrl = (
   description: string,
   required = true,
-  options: ValidatorJS.IsURLOptions = {},
+  options = {},
   maxLength = 1024,
 ) => {
   if (required) {

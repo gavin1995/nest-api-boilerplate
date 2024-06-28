@@ -1,9 +1,7 @@
-import 'source-map-support/register';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import * as helmet from 'helmet';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
@@ -11,6 +9,7 @@ import * as serveStatic from 'serve-static';
 import { renderFile } from 'ejs';
 import * as path from "path";
 import * as fs from "fs";
+import helmet from 'helmet';
 import { TransformInterceptor } from '@/interceptors/transform.interceptor';
 import { HttpExceptionFilter } from '@/filters/http-exception.filter';
 import { SpecialExceptionFilter } from '@/filters/special-exception.filter';
@@ -19,23 +18,9 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AppModule } from './app.module';
 import * as packageJson from '../package.json';
 import cfg from '../config';
-import { utilities as nestWinstonModuleUtilities, WinstonModule } from '@/providers/logger';
-import * as winston from 'winston';
-import { createLogger } from 'winston';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    logger: WinstonModule.createLogger({
-      transports: [
-        new winston.transports.Console({
-          format: winston.format.combine(
-            winston.format.timestamp(),
-            nestWinstonModuleUtilities.format.nestLike(),
-          ),
-        }),
-      ]
-    })
-  });
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {});
 
   // 开启跨域支持
   app.enableCors({

@@ -6,7 +6,6 @@ import { User } from './user.entity';
 import { JwtPayload } from './auth/jwt-payload.model';
 import { ConfigService } from '@/providers/config/config.service';
 import { random, str, md5 } from '@/shared/util';
-import { WINSTON_MODULE_PROVIDER } from '@/providers/logger';
 import { WhereOptions, Op } from 'sequelize';
 import { UserBatchGetDto, UserCreateDto, UserListQueryDto } from './user.dto';
 import { IHttpResultPagination } from '@/interfaces/http.interface';
@@ -23,7 +22,6 @@ export class UserService {
     @Inject('UserRepository')
     private readonly userRepository: typeof User,
     private readonly configService: ConfigService,
-    @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger
   ) {
     this.jwtPrivateKey = this.configService.jwtConfig.jwtPrivateKey;
   }

@@ -4,9 +4,9 @@
 
 ## 简介
 
-[Nest8](https://github.com/nestjs/nest) rest api 模板项目
+[Nest10+](https://github.com/nestjs/nest) rest api 模板项目
 
-其它参考：[官网文档](https://docs.nestjs.com/) || [Nest8中文文档](https://docs.nestjs.cn/8/introduction) 
+其它参考：[官网文档](https://docs.nestjs.com/) 
 
 ## 快速开始
 
